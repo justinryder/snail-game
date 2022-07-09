@@ -20,8 +20,8 @@ public class ExplodingStuffFountain : MonoBehaviour
 		if (Random.value < spawnChance)
 		{
 			GameObject go = Instantiate(stuff[Random.Range(0, stuff.Count)]) as GameObject;
-			if (go.audio) Destroy(go.audio);
-			if (go.animation) Destroy(go.animation);
+			if (go.GetComponent<AudioSource>()) Destroy(go.GetComponent<AudioSource>());
+			if (go.GetComponent<Animation>()) Destroy(go.GetComponent<Animation>());
 			Snail snail = go.GetComponent<Snail>();
 			if (snail) Destroy(snail);
 			TankTurret tankTurret = go.GetComponentInChildren<TankTurret>();

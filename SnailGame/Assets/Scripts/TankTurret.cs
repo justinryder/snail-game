@@ -55,7 +55,7 @@ public class TankTurret : MonoBehaviour
                 }
                 mFireTimer = 0;
                 GameObject bullet = GameObject.Instantiate(ShellExplosion, FirePoint.position, transform.rotation) as GameObject;
-                bullet.rigidbody.AddForce((Snail.transform.position - FirePoint.position).normalized * ShellForce);
+                bullet.GetComponent<Rigidbody>().AddForce((Snail.transform.position - FirePoint.position).normalized * ShellForce);
 
                 Fire.Play();
             }

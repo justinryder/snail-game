@@ -42,7 +42,7 @@ public class Snail : MonoBehaviour
     {
 		startLocation = transform.position;
 		isAlive = true;
-		if (animation.GetClipCount() > 0) animation.Play("Walk");
+		if (GetComponent<Animation>().GetClipCount() > 0) GetComponent<Animation>().Play("Walk");
 		//winTrigger = GameObject.Find("WinTrigger");
 	}
 
@@ -74,7 +74,7 @@ public class Snail : MonoBehaviour
             if (!mIsProtected)
             {
                 AudioHandler.PlaySnailHarden();
-                animation.Play("In");
+                GetComponent<Animation>().Play("In");
             }
             mIsProtected = true;
         }
@@ -83,7 +83,7 @@ public class Snail : MonoBehaviour
             if (mIsProtected)
             {
                 AudioHandler.PlaySnailSoften();
-                animation.Play("Out");
+                GetComponent<Animation>().Play("Out");
                 mWalkStartTimer = 0;
                 mStartedWalking = false;
             }
@@ -96,7 +96,7 @@ public class Snail : MonoBehaviour
         if (!mStartedWalking && mWalkStartTimer > WalkStartTime)
         {
             mStartedWalking = true;
-            animation.Play("Walk");
+            GetComponent<Animation>().Play("Walk");
         }
 	}
 
@@ -146,7 +146,7 @@ public class Snail : MonoBehaviour
         {
             isAlive = false;
 
-			animation.Stop();
+			GetComponent<Animation>().Stop();
 
             if (SnailDeathEvent != null)
                 SnailDeathEvent();

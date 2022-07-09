@@ -23,16 +23,17 @@ public class ExplodeAnimation : AnimationScript
 
 		forceDirection = new Vector3((1 - 2 * Random.value) * force, Random.value * force, (1 - 2 * Random.value) * force);
 
-		if (!rigidbody) gameObject.AddComponent<Rigidbody>();
-		rigidbody.AddForce(forceDirection, ForceMode.Impulse);
-		rigidbody.AddTorque(Random.value * spinSpeed, Random.value * spinSpeed, Random.value * spinSpeed, ForceMode.Impulse);
+		if (!GetComponent<Rigidbody>()) gameObject.AddComponent<Rigidbody>();
+		GetComponent<Rigidbody>().AddForce(forceDirection, ForceMode.Impulse);
+		GetComponent<Rigidbody>().AddTorque(Random.value * spinSpeed, Random.value * spinSpeed, Random.value * spinSpeed, ForceMode.Impulse);
 
 		smokeTrail = Instantiate(Resources.Load("Particles/Smoke/Smoke Trail")) as GameObject;
 		smokeTrail.transform.parent = transform;
 		smokeTrail.transform.localPosition = Vector3.zero;
-		ParticleEmitter smokeTrailParticleEmitter = smokeTrail.GetComponent<ParticleEmitter>();
-		smokeTrailParticleEmitter.minSize = 10;
-		smokeTrailParticleEmitter.maxSize = 10;
+		// TODO: replace with new particle system
+		// ParticleEmitter smokeTrailParticleEmitter = smokeTrail.GetComponent<ParticleEmitter>();
+		// smokeTrailParticleEmitter.minSize = 10;
+		// smokeTrailParticleEmitter.maxSize = 10;
 
 		fire = Instantiate(Resources.Load("Particles/Fire/Fire1")) as GameObject;
 		fire.transform.position = transform.position;
